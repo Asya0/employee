@@ -47,9 +47,14 @@ list-group-item .faster {
   opacity: 1;
   transform: translateX(0px);
 }
+
+.list-group-item .fa-star {
+  transition: 0.3s all;
+}
 .list-group-item.increase .list-group-item-label,
-.list-group-item.increase .list-group-item-input {
-  color: #e09f3e;
+.list-group-item.increase .list-group-item-input,
+.list-group-item.increase .fa-star {
+  color: #e0ba3e;
 }
 .list-group-item.increase .btnstart {
   color: #aeaeae;
