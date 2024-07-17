@@ -15,9 +15,27 @@ class App extends Component {
       increase: false,
       rise: false,
       data: [
-        { name: "Всеволод Иванов", salary: 800, increase: true, id: 1 },
-        { name: "Андрей Никитин", salary: 300, increase: false, id: 2 },
-        { name: "Артем Мухин", salary: 5000, increase: false, id: 3 },
+        {
+          name: "Всеволод Иванов",
+          salary: 800,
+          increase: false,
+          rise: true,
+          id: 1,
+        },
+        {
+          name: "Андрей Никитин",
+          salary: 300,
+          increase: false,
+          rise: false,
+          id: 2,
+        },
+        {
+          name: "Артем Мухин",
+          salary: 5000,
+          increase: false,
+          rise: false,
+          id: 3,
+        },
       ],
     };
   }
@@ -34,11 +52,21 @@ class App extends Component {
       name,
       salary,
       increase: false,
+      rise: false,
       id: this.state.data.length + 1,
     };
     this.setState(({ data }) => ({
       data: [...data, newItem],
     }));
+  };
+
+  onToggleIncrease = (id) => {
+    this.setState(({ data }) => {
+      const index = 
+    });
+  };
+  onToggleRise = (id) => {
+    console.log(`Rise this ${id}`);
   };
 
   render() {
@@ -50,7 +78,12 @@ class App extends Component {
           <SearchPanel />
           <AppFilter />
         </div>
-        <EmployeeList data={this.state.data} onDelete={this.deleteItem} />
+        <EmployeeList
+          data={this.state.data}
+          onDelete={this.deleteItem}
+          onToggleIncrease={this.onToggleIncrease}
+          onToggleRise={this.onToggleRise}
+        />
         <EmployeeAddForm onAdd={this.addItem} />
       </div>
     );
