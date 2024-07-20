@@ -37,6 +37,7 @@ class App extends Component {
           id: 3,
         },
       ],
+      term: "",
     };
   }
 
@@ -82,7 +83,19 @@ class App extends Component {
     console.log(`Rise this ${id}`);
   };
 
+  searchEmp = (items, term) => {
+    // когда юзер ввел что-то в строку поиска, а затем удалил:
+    if (term.length === 0) {
+      return items;
+    }
+    return items.filter((item) => {
+      return item.name.indexOf(term) > -1;
+    });
+  };
+
   render() {
+    const { data, term } = this.state;
+    const visibleData = this.searchEmp(data, term);
     return (
       <div className="app">
         <AppInfo
@@ -96,7 +109,7 @@ class App extends Component {
           <AppFilter />
         </div>
         <EmployeeList
-          data={this.state.data}
+          data={visibleData}
           onDelete={this.deleteItem}
           onToggleIncrease={this.onToggleIncrease}
           onToggleRise={this.onToggleRise}
