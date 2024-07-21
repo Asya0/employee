@@ -92,6 +92,10 @@ class App extends Component {
       return item.name.indexOf(term) > -1;
     });
   };
+  // обновление поиска
+  onUpdateSearch = (term) => {
+    this.setState({ term: term });
+  };
 
   render() {
     const { data, term } = this.state;
@@ -105,7 +109,7 @@ class App extends Component {
           }
         />
         <div className="search-panel">
-          <SearchPanel />
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
           <AppFilter />
         </div>
         <EmployeeList
