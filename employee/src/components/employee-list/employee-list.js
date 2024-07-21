@@ -2,9 +2,15 @@ import React from "react";
 import "./employee-list.css";
 import EmployeeListItem from "../employee-list-item/employee-list-item";
 
-function EmployeeList({ data, onDelete, onToggleIncrease, onToggleRise }) {
+function EmployeeList({
+  data,
+  onDelete,
+  onToggleIncrease,
+  onToggleRise,
+  onUpdateSalary,
+}) {
   const elements = data.map((item) => {
-    const { id, ...itemProps } = item;
+    const { id, newSalary, ...itemProps } = item;
     return (
       <EmployeeListItem
         key={id}
@@ -12,6 +18,7 @@ function EmployeeList({ data, onDelete, onToggleIncrease, onToggleRise }) {
         onDelete={() => onDelete(id)}
         onToggleIncrease={() => onToggleIncrease(id)}
         onToggleRise={() => onToggleRise(id)}
+        onUpdateSalary={(newSalary) => onUpdateSalary(id, newSalary)}
       />
     );
   });

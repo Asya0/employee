@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 
 import AppFilter from "../app-filter/app-filter";
 import AppInfo from "../app-info/app-info";
@@ -111,6 +111,14 @@ class App extends Component {
   onFilterSelect = (filter) => {
     this.setState({ filter: filter });
   };
+  //динамическое обновление зп
+  updateSalary = (id, newSalary) => {
+    this.setState(({ data }) => ({
+      data: data.map((emp) =>
+        emp.id === id ? { ...emp, salary: newSalary } : emp
+      ),
+    }));
+  };
 
   render() {
     const { data, term, filter } = this.state;
@@ -132,6 +140,7 @@ class App extends Component {
           onDelete={this.deleteItem}
           onToggleIncrease={this.onToggleIncrease}
           onToggleRise={this.onToggleRise}
+          onUpdateSalary={this.updateSalary}
         />
         <EmployeeAddForm onAdd={this.addItem} />
       </div>

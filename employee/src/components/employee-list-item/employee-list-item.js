@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./employee-list-item.css";
 
 const EmployeeListItem = (props) => {
@@ -10,6 +10,7 @@ const EmployeeListItem = (props) => {
     onToggleRise,
     increase,
     rise,
+    onUpdateSalary,
   } = props;
 
   let classNames = "list-group-item d-flex justify-content-between";
@@ -21,6 +22,14 @@ const EmployeeListItem = (props) => {
     classNames += " like";
   }
 
+  const [localSalary, setLocalSalary] = useState(salary);
+
+  const handleChangeSalary = (e) => {
+    const newSalary = parseInt(e.target.value, 10) || 0;
+    setLocalSalary(newSalary);
+    onUpdateSalary(newSalary); // Передача нового значения вверх
+  };
+
   return (
     <li className={classNames}>
       <span className="list-group-item-label" onClick={onToggleRise}>
@@ -29,7 +38,8 @@ const EmployeeListItem = (props) => {
       <input
         type="text"
         className="list-group-item-input"
-        defaultValue={salary + " P"}
+        value={localSalary}
+        onChange={handleChangeSalary}
       ></input>
       <div className="d-flex justify-content-center align-items-center">
         <button
